@@ -15,14 +15,11 @@ public class AppService {
     public ObjectMapper mapper = new ObjectMapper();
 
     public JsonNode parseJson(String input) {
-        JsonNode node;
         try {
-            node = mapper.readTree(input);
+            return mapper.readTree(input);
         } catch (IOException e) {
             throw new HttpMessageNotReadableException("Failed to parse JSON body.");
         }
-
-        return node;
     }
 
     public List<String> getScrubbedJsonText(JsonNode baseNode) {
